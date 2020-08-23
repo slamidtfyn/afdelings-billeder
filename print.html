@@ -1,1 +1,92 @@
-TODO
+<!DOCTYPE html>
+<html lap[ng="da" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Afdelingsbilleder</title>
+  </head>
+  <script type="text/javascript">
+
+  const overskrift="Min overskrift";
+  const billeder=[
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster","sla.jpg"],
+  ];
+  </script>
+<style >
+  #overskrift {
+    background-color:blue;
+    color:white;
+    text-align:center;
+    font-size:2em;
+    font-weight:bold;
+  }
+
+  #billeder {
+    display:grid;
+    grid-template-columns: auto auto auto;
+  }
+
+  .card {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    margin: 30px 30px;
+    border: thin black solid;
+  }
+   .billede {
+     margin:auto;
+     width: 100%;
+   }
+
+   .name,.title {
+     margin:auto;
+     text-align:center;
+     margin:20px 0px
+
+   }
+</style>
+  <body>
+  <div id="overskrift">
+
+  </div>
+  <div id="billeder">
+
+  </div>
+  <script type="text/javascript">
+    document.getElementById("overskrift").appendChild(document.createTextNode(overskrift))
+
+    let container=document.getElementById("billeder");
+    billeder.forEach(p=>{
+      let card=document.createElement("div");
+      card.classList.add("card");
+      let image=document.createElement("img")
+      image.src=p[2];
+      image.classList.add("billede");
+      let name=document.createElement("div");
+      name.classList.add("name");
+
+      name.appendChild(document.createTextNode(p[0]))
+
+      let title=document.createElement("div");
+      title.classList.add("title");
+
+      title.appendChild(document.createTextNode(p[1]))
+
+
+      card.appendChild(image);
+      card.appendChild(name);
+      card.appendChild(title);
+      container.appendChild(card);
+    })
+  </script>
+  </body>
+</html>
