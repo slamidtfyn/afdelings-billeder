@@ -9,12 +9,12 @@
   const overskrift="Min overskrift";
   const billeder=[
   ["Søren","Webmaster",""],
-  ["Søren","Webmaster","sla.jpg"],
-  ["Søren","Webmaster","sla.jpg"],
-  ["Søren","Webmaster","sla.jpg"],
-  ["Søren","Webmaster","sla.jpg"],
-  ["Søren","Webmaster","sla.jpg"],
-  ["Søren","Webmaster","sla.jpg"],
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster",""],
+  ["Søren","Webmaster",""],
   ["Søren","Webmaster","sla.jpg"],
   ["Søren","Webmaster","sla.jpg"],
   ["Søren","Webmaster","sla.jpg"],
@@ -44,7 +44,7 @@
   }
    .billede {
      margin:auto;
-     width: 100%;
+     width: 200px;
    }
 
    .name,.title {
@@ -69,7 +69,7 @@
       let card=document.createElement("div");
       card.classList.add("card");
       let image=document.createElement("img")
-      image.src=p[2];
+      image.src=p[2] || "https://via.placeholder.com/200x300/0000FF/808080?Text=Billede på vej";
       image.classList.add("billede");
       let name=document.createElement("div");
       name.classList.add("name");
