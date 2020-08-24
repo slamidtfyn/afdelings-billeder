@@ -4,7 +4,7 @@
 
 1. Åben https://raw.githubusercontent.com/slamidtfyn/afdelings-billeder/master/print.html
 2. Højre-klik og vælg gem som
-3. Gem I mappe med billeder
+3. Gem i mappe med billeder
 
 ## Guide til print:
 
@@ -21,4 +21,5 @@ const billeder=[
 
 Der kan laves så mange linier som der ønskes.
 
-4. Gem fil som filtype "Alle filer" og med filendelse .html
+4. Gem fil som filtype "Alle filer" og med filendelse .html i samme folder som billederne
+5. Åben fil med Chrome browser og udskriv
