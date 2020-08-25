@@ -14,5 +14,5 @@
 
 Der kan laves så mange linier som der ønskes med personer.
 
-4. Gem fil som filtype "Alle filer" og med filendelse .html i samme folder som billederne og print.html
+4. Gem fil som filtype "Alle filer" og med filendelse .html i samme folder som billederne
 5. Åben print.html med Chrome browser og udskriv
