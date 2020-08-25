@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lap[ng="da" dir="ltr">
+<html lang="da" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>Afdelingsbilleder</title>
   </head>
-  <script type="text/javascript" src="indstillinger.js"></script>
-<style >
+  <script type="text/javascript">
 
-:root {
-  --svendborg-color: #b3e0ff;
-  --odense-color: #c2f0c2;
-  --card-width: 210px;
-}
+  const by="svendborg" // svendborg eller odense;
+
+  const overskrift="Min overskrift";
+
+  const personer=[
+    ["Søren","Webmaster for hele verden!",""],
+    ["Yoda","Jedimaster",""],
+
+  ];
+
+  </script>
+
+<style >
+  :root {
+    --svendborg-color: #b3e0ff;
+    --odense-color: #c2f0c2;
+    --card-width: 210px;
+  }
 
   #overskrift {
     background-color:blue;
@@ -25,7 +37,6 @@
   #overskrift.svendborg {
     background-color: var(--svendborg-color);
   }
-
 
   #overskrift.odense {
     background-color: var(--odense-color);
@@ -56,22 +67,17 @@
 
   }
 
-
-    .content.odense {
-      border: thin var(--odense-color) solid;
-
-    }
-
+  .content.odense {
+    border: thin var(--odense-color) solid;
+  }
 
    .billede {
      max-width: var(--card-width);
-
    }
 
    .name,.title {
      margin:auto;
      text-align:center;
-
    }
 </style>
   <body>
@@ -86,7 +92,7 @@
     os.appendChild(document.createTextNode(overskrift))
     os.classList.add(by);
     let container=document.getElementById("billeder");
-    billeder.forEach(p=>{
+    personer.forEach(p=>{
       let card=document.createElement("div");
       card.classList.add("card");
       let image=document.createElement("img")
