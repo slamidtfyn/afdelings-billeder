@@ -12,7 +12,7 @@
 ## Guide til print:
 
 1. Rediger billeder således at de er klar til print
-2. Åben settings.json med Notesblok
+2. Åben indstillinger.js med Notesblok
 3. Rediger by,overskrift,navne, titler og billeder
 
 
