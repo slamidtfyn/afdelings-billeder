@@ -5,7 +5,7 @@
 1. Åben https://raw.githubusercontent.com/slamidtfyn/afdelings-billeder/master/print.html
 2. Højre-klik og vælg gem som
 3. Gem i mappe med billeder
-4. Åben https://raw.githubusercontent.com/slamidtfyn/afdelings-billeder/master/settings.js
+4. Åben https://raw.githubusercontent.com/slamidtfyn/afdelings-billeder/master/indstillinger.js
 2. Højre-klik og vælg gem som
 3. Gem i mappe med billeder
 
