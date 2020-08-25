@@ -9,6 +9,8 @@
   const by="svendborg" // svendborg eller odense;
   const overskrift="Min overskrift";
   const billeder=[
+    ["Søren","Webmaster for hele verden!",""],
+    ["Søren","Webmaster",""],
   ["Søren","Webmaster for hele verden!",""],
   ["Søren","Webmaster",""],
   ["Søren","Webmaster",""],
@@ -19,6 +21,7 @@
 :root {
   --svendborg-color: #b3e0ff;
   --odense-color: #c2f0c2;
+  --card-width: 210px;
 }
 
   #overskrift {
@@ -27,6 +30,7 @@
     text-align:center;
     font-size:2em;
     font-weight:bold;
+    margin-bottom: 30px;
   }
 
   #overskrift.svendborg {
@@ -50,7 +54,7 @@
     justify-self:center;
     align-self:start;
     margin: 10px;
-    width: 200px;
+    width: var(--card-width);
   }
 
   .content {
@@ -71,6 +75,7 @@
 
 
    .billede {
+     max-width: var(--card-width);
 
    }
 
@@ -118,6 +123,7 @@
       content.appendChild(title);
       card.appendChild(content);
       container.appendChild(card);
+      document.title=overskrift;
     })
   </script>
   </body>
