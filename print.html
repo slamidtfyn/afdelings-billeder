@@ -1,65 +1,75 @@
 <!DOCTYPE html>
 <html lang="da" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Afdelingsbilleder</title>
-  </head>
-  <script type="text/javascript">
 
-  const by="svendborg" // svendborg eller odense;
+<head>
+  <meta charset="utf-8">
+  <title>Afdelingsbilleder</title>
+</head>
+<script type="text/javascript">
 
-  const overskrift="Min overskrift";
+  const by = "svendborg" // svendborg eller odense;
 
-  const personer=[
-    ["Søren","Webmaster for hele verden!",""],
-    ["Yoda","Jedimaster",""],
+  const overskrift = "Min overskrift";
+
+  const personer = [
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Søren", "Webmaster for hele verden!", ""],
+    ["Yoda", "Jedimaster", ""],
 
   ];
 
-  </script>
+</script>
 
-<style >
+<style>
   :root {
     --svendborg-color: #b3e0ff;
     --odense-color: #c2f0c2;
     --card-width: 210px;
   }
 
-  #overskrift {
-    background-color:blue;
-    color:white;
-    text-align:center;
-    font-size:2em;
-    font-weight:bold;
-    margin-bottom: 30px;
+  .overskrift {
+    background-color: blue;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    width: 100;
+    grid-column: 1 / span 3;
   }
 
-  #overskrift.svendborg {
+  .overskrift.svendborg {
     background-color: var(--svendborg-color);
   }
 
-  #overskrift.odense {
+  .overskrift.odense {
     background-color: var(--odense-color);
   }
 
   #billeder {
-    display:grid;
-    grid-template-columns: 33% 33% 33%;
+    display: grid;
+    grid-template-columns: [billeder] 33% 33% 33%;
   }
 
   .card {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    justify-self:center;
-    align-self:start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    align-self: start;
     margin: 10px;
     width: var(--card-width);
   }
 
   .content {
-    margin:10px 0px 0px 0px
-
+    margin: 10px 0px 0px 0px
   }
 
   .content.svendborg {
@@ -71,43 +81,54 @@
     border: thin var(--odense-color) solid;
   }
 
-   .billede {
-     max-width: var(--card-width);
-   }
+  .billede {
+    max-width: var(--card-width);
+  }
 
-   .name,.title {
-     margin:auto;
-     text-align:center;
-   }
+  .name,
+  .title {
+    margin: auto;
+    text-align: center;
+  }
 </style>
-  <body>
-  <div id="overskrift">
 
-  </div>
+<body>
   <div id="billeder">
 
   </div>
   <script type="text/javascript">
-    let os=document.getElementById("overskrift");
-    os.appendChild(document.createTextNode(overskrift))
-    os.classList.add(by);
-    let container=document.getElementById("billeder");
-    personer.forEach(p=>{
-      let card=document.createElement("div");
+    document.title = overskrift;
+    function createHeader() {
+      let os = document.createElement("div");
+      os.appendChild(document.createTextNode(overskrift))
+      os.classList.add("overskrift");
+      os.classList.add(by);
+      return os;
+    }
+
+    let container = document.getElementById("billeder");
+    container.appendChild(createHeader());
+    let count = 0;
+    personer.forEach(p => {
+      if (count == 9) {
+        container.appendChild(createHeader());
+        count = 0;
+      }
+      let card = document.createElement("div");
       card.classList.add("card");
-      let image=document.createElement("img")
-      image.src=p[2] || "https://via.placeholder.com/210x285/0000FF/808080?Text=Billede på vej";
+      let image = document.createElement("img")
+      image.src = p[2] || "https://via.placeholder.com/210x285/0000FF/808080?Text=Billede på vej";
       image.classList.add("billede");
-      let content=document.createElement("div");
+      let content = document.createElement("div");
       content.classList.add("content");
       content.classList.add(by);
 
-      let name=document.createElement("div");
+      let name = document.createElement("div");
       name.classList.add("name");
 
       name.appendChild(document.createTextNode(p[0]))
 
-      let title=document.createElement("div");
+      let title = document.createElement("div");
       title.classList.add("title");
 
       title.appendChild(document.createTextNode(p[1]))
@@ -118,8 +139,11 @@
       content.appendChild(title);
       card.appendChild(content);
       container.appendChild(card);
-      document.title=overskrift;
+
+      count++;
+
     })
   </script>
-  </body>
+</body>
+
 </html>
