@@ -53,8 +53,11 @@
     background-color: var(--odense-color);
   }
 
-  .not-first {
+  .page-break-before {
     page-break-before: always;
+  }
+  .page-break-after {
+    page-break-after: always;
   }
 
   #billeder {
@@ -109,7 +112,7 @@
       os.appendChild(document.createTextNode(overskrift))
       os.classList.add("overskrift");
       os.classList.add(by);
-      if (header > 0) os.classList.add("not-first");
+      if (header > 0) os.classList.add("page-break-before");
       header++;
       return os;
     }
@@ -149,6 +152,11 @@
       container.appendChild(card);
 
       count++;
+      if (count == 9) {
+        
+      card.classList.add("page-break-after");
+      }
+      
 
     })
   </script>
