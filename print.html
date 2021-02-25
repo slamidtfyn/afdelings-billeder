@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="da" dir="ltr">
 
 <head>
@@ -6,17 +6,7 @@
   <title>Afdelingsbilleder</title>
 </head>
 <script type="text/javascript">
-
-  const by = "svendborg" // svendborg eller odense;
-
-  const overskrift = "Min overskrift";
-
-  const personer = [
-    ["Søren", "Webmaster for hele verden!", "søren.png"],
-    ["Yoda", "Jedimaster", "yoda.png"],
-
-  ];
-
+  /*###DATA###*/
 </script>
 
 <style>
@@ -96,61 +86,63 @@
 
   </div>
   <script type="text/javascript">
-    document.title = overskrift;
-    let header = 0;
-
-    function createHeader() {
-      let os = document.createElement("div");
-      os.appendChild(document.createTextNode(overskrift))
-      os.classList.add("overskrift");
-      os.classList.add(by);
-      if (header > 0) os.classList.add("page-break-before");
-      header++;
-      return os;
-    }
-
-    let container = document.getElementById("billeder");
-    container.appendChild(createHeader());
-    let count = 0;
-    personer.forEach(p => {
-      if (count == 9) {
-        container.appendChild(createHeader());
-        count = 0;
-      }
-      let card = document.createElement("div");
-      card.classList.add("card");
-      let image = document.createElement("img")
-      image.src= p[2] || "https://via.placeholder.com/210x285/0000FF/808080?Text=Billede på vej";
-      image.classList.add("billede");
-      let content = document.createElement("div");
-      content.classList.add("content");
-      content.classList.add(by);
-
-      let name = document.createElement("div");
-      name.classList.add("name");
-
-      name.appendChild(document.createTextNode(p[0]))
-
-      let title = document.createElement("div");
-      title.classList.add("title");
-
-      title.appendChild(document.createTextNode(p[1]))
-
-
-      card.appendChild(image);
-      content.appendChild(name);
-      content.appendChild(title);
-      card.appendChild(content);
-      container.appendChild(card);
-
-      count++;
-      if (count == 9) {
-        
-      card.classList.add("page-break-after");
-      }
+      const overskrift = data.Titel;
+      document.title = overskrift;
+      let header = 0;
+      const by = data.Lokation.toLowerCase();
       
+      function createHeader() {
+          let os = document.createElement("div");
+          os.appendChild(document.createTextNode(overskrift))
+          os.classList.add("overskrift");
+          os.classList.add(by);
+          if (header > 0) os.classList.add("page-break-before");
+          header++;
+          return os;
+      }
 
-    })
+      let container = document.getElementById("billeder");
+      container.appendChild(createHeader());
+      let count = 0;
+      data.Personer.forEach(p => {
+          if (count == 9) {
+              container.appendChild(createHeader());
+              count = 0;
+          }
+          let card = document.createElement("div");
+          card.classList.add("card");
+          let image = document.createElement("img")
+          image.src = "file://" + p.Filnavn;
+          image.classList.add("billede");
+          let content = document.createElement("div");
+          content.classList.add("content");
+          content.classList.add(by);
+
+          let name = document.createElement("div");
+          name.classList.add("name");
+
+          name.appendChild(document.createTextNode(p.Navn))
+
+          let title = document.createElement("div");
+          title.classList.add("title");
+
+          title.appendChild(document.createTextNode(p.Titel))
+
+
+          card.appendChild(image);
+          content.appendChild(name);
+          content.appendChild(title);
+          card.appendChild(content);
+          container.appendChild(card);
+
+          count++;
+          if (count == 9) {
+
+              card.classList.add("page-break-after");
+          }
+
+
+      })
   </script>
 </body>
 

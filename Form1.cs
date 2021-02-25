@@ -14,8 +14,8 @@ namespace AfdelingsBilleder
 {
     public partial class Form1 : Form
     {
-
-        private List<Dto> Data = new List<Dto>();
+        private PrintModel PrintModel { get; set; } = new PrintModel();
+        
         public Form1()
         {
             InitializeComponent();
@@ -38,7 +38,7 @@ namespace AfdelingsBilleder
             {
 
                 var attr = new FileInfo(file);
-                Data.Add(new Dto { Billede = new Bitmap(file), Navn = attr.Name.Replace(attr.Extension, ""), Filnavn = file });
+                PrintModel.Personer.Add(new PersonModel { Billede = new Bitmap(file), Navn = attr.Name.Replace(attr.Extension, ""), Filnavn = file });
             }
             SetData();
 
@@ -48,9 +48,13 @@ namespace AfdelingsBilleder
 
         private void SetData()
         {
-            bindingSource1.DataSource = Data;
+            bindingSource1.DataSource = PrintModel.Personer;
             bindingSource1.ResetBindings(metadataChanged: false);
             dataGridView1.Refresh();
+            bool enabled=(PrintModel.Personer.Any() && !string.IsNullOrWhiteSpace(PrintModel.Titel) && !string.IsNullOrWhiteSpace(PrintModel.Lokation));
+            SaveButton.Enabled = enabled;
+            PrintButton.Enabled = enabled;
+
         }
 
         private void textBox1_DragOver(object sender, DragEventArgs e)
@@ -78,6 +82,7 @@ namespace AfdelingsBilleder
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            GemDataDialog.FileName = PrintModel.Titel;
             var result = GemDataDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -89,19 +94,30 @@ namespace AfdelingsBilleder
                     return;
                 }
 
-                if (fi.Exists)
-                {
-                    var overWrite = MessageBox.Show("Vil du overskrive " + fi.Name + "?", "Overskriv", MessageBoxButtons.YesNo);
-                    if (overWrite == DialogResult.No) return;
-                }
-
-                var content = JsonConvert.SerializeObject(Data.AsEnumerable<Model>(), Formatting.Indented);
+                var content = JsonConvert.SerializeObject(PrintModel, Formatting.Indented);
                 File.WriteAllText(GemDataDialog.FileName, content);
             }
         }
 
         private void PrintButton_Click(object sender, EventArgs e)
         {
+            GemPrintDialog.FileName = PrintModel.Titel;
+            var result = GemPrintDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                var fi = new FileInfo(GemPrintDialog.FileName);
+
+                if (fi.Extension != ".html")
+                {
+                    MessageBox.Show("Forkert filtype - prøv igen");
+                    return;
+                }
+                string template = Resource1.print;
+                string content="const data= " + JsonConvert.SerializeObject(PrintModel, Formatting.None);
+                var output= template.Replace("/*###DATA###*/", content);
+                File.WriteAllText(GemPrintDialog.FileName,output);
+
+            }
 
         }
 
@@ -114,24 +130,42 @@ namespace AfdelingsBilleder
                 if (fi.Exists && fi.Extension == ".json")
                 {
                     var data = File.ReadAllText(HentDataDialog.FileName);
-                    var model = JsonConvert.DeserializeObject<List<Model>>(data);
-                    Data = new List<Dto>(model.Select(p => new Dto { Filnavn = p.Filnavn, Navn = p.Navn, Titel = p.Titel, Billede = new Bitmap(p.Filnavn) }));
+                    PrintModel = JsonConvert.DeserializeObject<PrintModel>(data);
+                    PrintModel.Personer.ForEach(p => p.Billede = new Bitmap(p.Filnavn));
+                    textBox1.Text = PrintModel.Titel;
+                    comboBox1.Text = PrintModel.Lokation;
                     SetData();
                 }
             }
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            PrintModel.Titel = textBox1.Text;
+            SetData();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PrintModel.Lokation = comboBox1.Text;
+            SetData();
+        }
     }
 
-    public class Dto : Model
-    {
-        public Image Billede { get; set; }
-
-    }
-
-    public class Model
+    public class PersonModel
     {
         public string Filnavn { get; set; }
         public string Navn { get; set; }
         public string Titel { get; set; }
+        
+        [JsonIgnore]
+        public Image Billede { get; set; }
+    }
+
+    public class PrintModel {
+        public string Titel { get; set; }
+        public string Lokation { get; set; }
+
+        public List<PersonModel> Personer { get; set; } = new List<PersonModel>();
     }
 }
