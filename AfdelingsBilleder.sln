@@ -1,6 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfdelingsBilleder", "AfdelingsBilleder.csproj", "{EE413B51-569F-47F1-B772-EA54949C11F2}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AfdelingsBilleder.App", "AfdelingsBilleder.App\AfdelingsBilleder.App.csproj", "{E7CB9338-CEE0-432B-AEF6-D86535A891EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE413B51-569F-47F1-B772-EA54949C11F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE413B51-569F-47F1-B772-EA54949C11F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE413B51-569F-47F1-B772-EA54949C11F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE413B51-569F-47F1-B772-EA54949C11F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7CB9338-CEE0-432B-AEF6-D86535A891EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7CB9338-CEE0-432B-AEF6-D86535A891EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7CB9338-CEE0-432B-AEF6-D86535A891EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7CB9338-CEE0-432B-AEF6-D86535A891EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E26E166C-A5B9-4A90-B9BE-874BD4D1D634}
 	EndGlobalSection
 EndGlobal

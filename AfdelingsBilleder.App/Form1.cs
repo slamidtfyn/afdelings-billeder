@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AfdelingsBilleder.App;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,12 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AfdelingsBilleder
+namespace AfdelingsBilleder.App
 {
     public partial class Form1 : Form
     {
         private PrintModel PrintModel { get; set; } = new PrintModel();
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -51,7 +52,7 @@ namespace AfdelingsBilleder
             bindingSource1.DataSource = PrintModel.Personer;
             bindingSource1.ResetBindings(metadataChanged: false);
             dataGridView1.Refresh();
-            bool enabled=(PrintModel.Personer.Any() && !string.IsNullOrWhiteSpace(PrintModel.Titel) && !string.IsNullOrWhiteSpace(PrintModel.Lokation));
+            bool enabled = (PrintModel.Personer.Any() && !string.IsNullOrWhiteSpace(PrintModel.Titel) && !string.IsNullOrWhiteSpace(PrintModel.Lokation));
             SaveButton.Enabled = enabled;
             PrintButton.Enabled = enabled;
 
@@ -157,12 +158,13 @@ namespace AfdelingsBilleder
         public string Filnavn { get; set; }
         public string Navn { get; set; }
         public string Titel { get; set; }
-        
+
         [JsonIgnore]
         public Image Billede { get; set; }
     }
 
-    public class PrintModel {
+    public class PrintModel
+    {
         public string Titel { get; set; }
         public string Lokation { get; set; }
 
